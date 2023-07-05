@@ -118,7 +118,7 @@ export default function Login() {
                                 <Image src="/img/MultiEvents.png" width={120} height={120} alt="Logo MultiEvents" />
                                 <div className="w-full flex flex-col gap-2">
                                     <h1 className="font-Saira font-bold text-3xl text-center">Hello Again!</h1>
-                                    <p className="font-Saira text-[#3a3a3a] text-center"> Lorem ipsum dolor sit amet, consectetur adipiscing elit nulla scelerisque </p>
+                                    <p className="font-Saira text-[#3a3a3a] text-center"> Bienvenido a MultiEvents vive la mejor experiencia junto a nosotros </p>
                                 </div>
                             </div>
                         </div>

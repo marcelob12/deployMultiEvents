@@ -1,14 +1,15 @@
 import React from 'react'
 import LayoutIndex from '@/components/LayoutsComponent/LayoutIndex'
 import Image from 'next/image';
-import Logo from '@/assets/MultiEvents.png'
 
-const Info= () => {
+
+const Info = () => {
+    const Logo = require('/public/img/MultiEvents.jpg');
     return (
         <LayoutIndex title="Info">
             <div className="font-Saira flex flex-col mx-8 my-4 md:mx-80 md:my-20">
                 <div className="flex justify-center items-center mb-3">
-                    <Image src={Logo} alt="Logo"/>
+                    <Image src={Logo} alt="Logo" />
                 </div>
                 <h1 className="text-lg font-bold flex justify-center items-center my-4">
                     Necesitas ayuda?
@@ -28,15 +29,15 @@ const Info= () => {
                         <li className="text-lg ">
                             Sobre código QR
                         </li>
-                        Para poder participar en los eventos, se deberá de canjear su ticket. 
-                        Para esto se debe de canjear el código QR, 
-                        usted tendrá 10 minutos para que este sea validado por uno de nuestros empleados. 
-                        El código será válido únicamente durante 10 minutos, 
-                        si este no fue validado durante este tiempo se deberá generar nuevamente el código QR, 
+                        Para poder participar en los eventos, se deberá de canjear su ticket.
+                        Para esto se debe de canjear el código QR,
+                        usted tendrá 10 minutos para que este sea validado por uno de nuestros empleados.
+                        El código será válido únicamente durante 10 minutos,
+                        si este no fue validado durante este tiempo se deberá generar nuevamente el código QR,
                         esto es con el fin de proteger sus tickets y evitar inconvenientes al momento de asistir a los eventos.
                     </ol>
                 </div>
-            </div>          
+            </div>
         </LayoutIndex>
     )
 };

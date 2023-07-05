@@ -1,0 +1,289 @@
+[
+    {
+        "id": 1,
+        "title": "Metallica",
+        "description": "Lorem ipsum dolor sit amet elit iure adipisicing. Consectetur laborum ea nihil asperiores",
+        "date": "12/12/2021",
+        "place": "Estadio de la ciudad",
+        "image": "/img/Metallica.png",
+        "category": "Conciertos",
+        "tiers": [
+            {
+                "id": "07b5672c-f0bb-4ffe-8cd1-30cc8b0a6fbc",
+                "name": "in felis",
+                "capacity": 41,
+                "price": "33.90"
+            },
+            {
+                "id": "6e012fbc-a4a3-4c96-b802-9cf5919227c9",
+                "name": "justo maecenas",
+                "capacity": 41,
+                "price": "158.70"
+            },
+            {
+                "id": "11d55260-d5e4-4c8d-9059-1f70e544f65d",
+                "name": "ut massa",
+                "capacity": 20,
+                "price": "45.25"
+            },
+            {
+                "id": "442c55c5-c8f1-4a45-aecb-f6a56482c18d",
+                "name": "pede morbi",
+                "capacity": 9,
+                "price": "104.75"
+            },
+            {
+                "id": "ce4adaa1-1fae-4e13-a9a2-f62826848516",
+                "name": "nulla sed",
+                "capacity": 20,
+                "price": "189.16"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "J Cole",
+        "description": "Lorem ipsum dolor sit amet elit iure adipisicing. Consectetur laborum ea nihil asperiores",
+        "date": "12/12/2021",
+        "place": "Estadio de la ciudad",
+        "image": "/img/Jcole.png",
+        "category": "Conciertos",
+        "tiers": [
+            {
+                "id": "07b5672c-f0bb-4ffe-8cd1-30cc8b0a6fbc",
+                "name": "in felis",
+                "capacity": 41,
+                "price": "33.90"
+            },
+            {
+                "id": "6e012fbc-a4a3-4c96-b802-9cf5919227c9",
+                "name": "justo maecenas",
+                "capacity": 41,
+                "price": "158.70"
+            },
+            {
+                "id": "11d55260-d5e4-4c8d-9059-1f70e544f65d",
+                "name": "ut massa",
+                "capacity": 20,
+                "price": "45.25"
+            },
+            {
+                "id": "442c55c5-c8f1-4a45-aecb-f6a56482c18d",
+                "name": "pede morbi",
+                "capacity": 9,
+                "price": "104.75"
+            },
+            {
+                "id": "ce4adaa1-1fae-4e13-a9a2-f62826848516",
+                "name": "nulla sed",
+                "capacity": 20,
+                "price": "189.16"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Scorpions",
+        "description": "Lorem ipsum dolor sit amet elit iure adipisicing. Consectetur laborum ea nihil asperiores",
+        "date": "12/12/2021",
+        "place": "Estadio Cuscatlan",
+        "image": "/img/scorpions.jpg",
+        "category": "Conciertos",
+        "tiers": [
+            {
+                "id": "07b5672c-f0bb-4ffe-8cd1-30cc8b0a6fbc",
+                "name": "in felis",
+                "capacity": 41,
+                "price": "33.90"
+            },
+            {
+                "id": "6e012fbc-a4a3-4c96-b802-9cf5919227c9",
+                "name": "justo maecenas",
+                "capacity": 41,
+                "price": "158.70"
+            },
+            {
+                "id": "11d55260-d5e4-4c8d-9059-1f70e544f65d",
+                "name": "ut massa",
+                "capacity": 20,
+                "price": "45.25"
+            },
+            {
+                "id": "442c55c5-c8f1-4a45-aecb-f6a56482c18d",
+                "name": "pede morbi",
+                "capacity": 9,
+                "price": "104.75"
+            },
+            {
+                "id": "ce4adaa1-1fae-4e13-a9a2-f62826848516",
+                "name": "nulla sed",
+                "capacity": 20,
+                "price": "189.16"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Concierto de merengue",
+        "description": "Lorem ipsum dolor sit amet elit iure adipisicing. Consectetur laborum ea nihil asperiores",
+        "date": "12/12/2021",
+        "place": "Estadio de la ciudad",
+        "image": "/img/ConciertosCategory.png",
+        "category": "Conciertos",
+        "tiers": [
+            {
+                "id": "07b5672c-f0bb-4ffe-8cd1-30cc8b0a6fbc",
+                "name": "in felis",
+                "capacity": 41,
+                "price": "33.90"
+            },
+            {
+                "id": "6e012fbc-a4a3-4c96-b802-9cf5919227c9",
+                "name": "justo maecenas",
+                "capacity": 41,
+                "price": "158.70"
+            },
+            {
+                "id": "11d55260-d5e4-4c8d-9059-1f70e544f65d",
+                "name": "ut massa",
+                "capacity": 20,
+                "price": "45.25"
+            },
+            {
+                "id": "442c55c5-c8f1-4a45-aecb-f6a56482c18d",
+                "name": "pede morbi",
+                "capacity": 9,
+                "price": "104.75"
+            },
+            {
+                "id": "ce4adaa1-1fae-4e13-a9a2-f62826848516",
+                "name": "nulla sed",
+                "capacity": 20,
+                "price": "189.16"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Clásico de futbol",
+        "description": "Lorem ipsum dolor sit amet elit iure adipisicing. Consectetur laborum ea nihil asperiores",
+        "date": "12/12/2021",
+        "place": "Estadio de la ciudad",
+        "image": "/img/DeportesCategory.png",
+        "category": "Deportes",
+        "tiers": [
+            {
+                "id": "07b5672c-f0bb-4ffe-8cd1-30cc8b0a6fbc",
+                "name": "in felis",
+                "capacity": 41,
+                "price": "33.90"
+            },
+            {
+                "id": "6e012fbc-a4a3-4c96-b802-9cf5919227c9",
+                "name": "justo maecenas",
+                "capacity": 41,
+                "price": "158.70"
+            },
+            {
+                "id": "11d55260-d5e4-4c8d-9059-1f70e544f65d",
+                "name": "ut massa",
+                "capacity": 20,
+                "price": "45.25"
+            },
+            {
+                "id": "442c55c5-c8f1-4a45-aecb-f6a56482c18d",
+                "name": "pede morbi",
+                "capacity": 9,
+                "price": "104.75"
+            },
+            {
+                "id": "ce4adaa1-1fae-4e13-a9a2-f62826848516",
+                "name": "nulla sed",
+                "capacity": 20,
+                "price": "189.16"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Clásico de futbol",
+        "description": "Lorem ipsum dolor sit amet elit iure adipisicing. Consectetur laborum ea nihil asperiores",
+        "date": "12/12/2021",
+        "place": "Estadio de la ciudad",
+        "image": "/img/DeportesCategory.png",
+        "category": "Deportes",
+        "tiers": [
+            {
+                "id": "07b5672c-f0bb-4ffe-8cd1-30cc8b0a6fbc",
+                "name": "in felis",
+                "capacity": 41,
+                "price": "33.90"
+            },
+            {
+                "id": "6e012fbc-a4a3-4c96-b802-9cf5919227c9",
+                "name": "justo maecenas",
+                "capacity": 41,
+                "price": "158.70"
+            },
+            {
+                "id": "11d55260-d5e4-4c8d-9059-1f70e544f65d",
+                "name": "ut massa",
+                "capacity": 20,
+                "price": "45.25"
+            },
+            {
+                "id": "442c55c5-c8f1-4a45-aecb-f6a56482c18d",
+                "name": "pede morbi",
+                "capacity": 9,
+                "price": "104.75"
+            },
+            {
+                "id": "ce4adaa1-1fae-4e13-a9a2-f62826848516",
+                "name": "nulla sed",
+                "capacity": 20,
+                "price": "189.16"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Clásico de futbol",
+        "description": "Lorem ipsum dolor sit amet elit iure adipisicing. Consectetur laborum ea nihil asperiores",
+        "date": "12/12/2021",
+        "place": "Estadio de la ciudad",
+        "image": "/img/DeportesCategory.png",
+        "category": "Deportes",
+        "tiers": [
+            {
+                "id": "07b5672c-f0bb-4ffe-8cd1-30cc8b0a6fbc",
+                "name": "in felis",
+                "capacity": 41,
+                "price": "33.90"
+            },
+            {
+                "id": "6e012fbc-a4a3-4c96-b802-9cf5919227c9",
+                "name": "justo maecenas",
+                "capacity": 41,
+                "price": "158.70"
+            },
+            {
+                "id": "11d55260-d5e4-4c8d-9059-1f70e544f65d",
+                "name": "ut massa",
+                "capacity": 20,
+                "price": "45.25"
+            },
+            {
+                "id": "442c55c5-c8f1-4a45-aecb-f6a56482c18d",
+                "name": "pede morbi",
+                "capacity": 9,
+                "price": "104.75"
+            },
+            {
+                "id": "ce4adaa1-1fae-4e13-a9a2-f62826848516",
+                "name": "nulla sed",
+                "capacity": 20,
+                "price": "189.16"
+            }
+        ]
+    }
+]

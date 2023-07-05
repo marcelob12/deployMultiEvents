@@ -1,0 +1,73 @@
+[
+    {
+        "id": "b912a86a-e655-4f74-a1ba-1837643023d2",
+        "email": "fhavesides0@com.com",
+        "name": "Francisca Havesides",
+        "permissions": [
+            "Users management",
+            "Events management",
+            "Statistics control",
+            "QR reader"
+        ]
+    },
+    {
+        "id": "684deba6-e637-4f74-8c9b-116e7cc749b4",
+        "email": "hbossingham1@cpanel.net",
+        "name": "Helga Bossingham",
+        "permissions": [
+            "Users management",
+            "Events management",
+            "Statistics control"
+        ]
+    },
+    {
+        "id": "f207e56a-ff3a-42cd-b6b3-17177b7641c3",
+        "email": "rfelder2@xing.com",
+        "name": "Rivalee Felder",
+        "permissions": [
+            "Users management",
+            "Statistics control",
+            "QR reader"
+        ]
+    },
+    {
+        "id": "e4c627ea-1563-4433-88a8-e7e7a1e02005",
+        "email": "ngoddertsf3@bloglines.com",
+        "name": "Nicoli Goddert",
+        "permissions": [
+            "Events management",
+            "Statistics control",
+            "QR reader"
+        ]
+    },
+    {
+        "id": "eb293ca4-70dc-4254-98d5-3031d1aeb649",
+        "email": "lmarkie4@cafepress.com",
+        "name": "Lilllie Markie",
+        "permissions": [
+            "Users management"
+        ]
+    },
+    {
+        "id": "2f9aeca7-cd75-43b5-99ec-0d1e545c2eaf",
+        "email": "dboon5@illinois.edu",
+        "name": "Devan Boon",
+        "permissions": [
+            "Users management",
+            "Events management",
+            "Statistics control",
+            "QR reader"
+        ]
+    },
+    {
+        "id": "659f0917-9b45-47a5-bf3f-0f19eb472e57",
+        "email": "closemann6@google.pl",
+        "name": "Clarabelle Losemann",
+        "permissions": [
+            "Users management",
+            "Events management",
+            "Statistics control",
+            "QR reader"
+        ]
+    }
+]

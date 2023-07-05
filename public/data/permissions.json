@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "name": "Users management"
+    },
+    {
+        "id": 2,
+        "name": "Events management"
+    },
+    {
+        "id": 3,
+        "name": "Statistics control"
+    },
+    {
+        "id": 4,
+        "name": "QR reader"
+    }
+]

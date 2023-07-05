@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "title": "Era Tour - Taylor Swift",
+        "order": 4567,
+        "place": "Complejo la Hacienda",
+        "tier": "General",
+        "date": "12/12/2023",
+        "time": "8:00 pm"
+    },
+    {
+        "id": 2,
+        "title": "Scorpions - Rock Believer Tour 2023",
+        "order": 4567,
+        "place": "Estadio Cuscatlán",
+        "tier": "VIP",
+        "date": "12/12/2023",
+        "time": "8:00 pm"
+    }, 
+    {
+        "id": 3,
+        "title": "Clásico de futbol",
+        "order": 4567,
+        "place": "Estadio Cuscatlán",
+        "tier": "Sol",
+        "date": "12/12/2023",
+        "time": "3:00 pm"
+    }
+]

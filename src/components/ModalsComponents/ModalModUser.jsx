@@ -2,41 +2,64 @@ import { Fragment, useEffect, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react";
 import { Checkbox } from "@material-tailwind/react";
 import useUser from "@/hooks/useUser";
+import { toast } from "react-toastify";
 
 const ModalModUser = () => {
-    const { modalModUser, handleModalModUser, user, privileges, getPrivileges } = useUser();
+    const { modalModUser, handleModalModUser, user, privileges, getPrivileges, createAccess, getUsers } = useUser();
     const [name, setName] = useState("");
-    const [userPermissions, setUserPermissions] = useState([]);
+    const [finalObject, setFinalObject] = useState({});
+    const [userPrivileges, setUserPrivileges] = useState([]);
 
     useEffect(() => {
         getPrivileges();
-    }, [])
+    }, []);
 
     useEffect(() => {
         if (user?.username) {
             setName(user.username);
-            setUserPermissions(user.accessList);
+
+            let p = [];
+            user.accessList.forEach(access => {
+                p.push({
+                    "id": access.privilege.idPrivilege
+                });
+            })
+            setUserPrivileges(p);
         }
-    }, [user])
+    }, [user]);
+
+    useEffect(() => {
+        setFinalObject({
+            "identifier": name,
+            "privileges": userPrivileges
+        });
+    }, [name, userPrivileges]);
 
 
     const handlePermissions = (p) => {
-        if (userPermissions.includes(p)) {
-            const updatedUserPermissions = userPermissions.filter((per) => per !== p);
-            setUserPermissions(updatedUserPermissions);
+
+        if (userPrivileges.some(obj => Object.values(obj).includes(p.idPrivilege))) {
+            const updatedUserPrivileges = userPrivileges.filter(pri => pri.id !== p.idPrivilege);
+            setUserPrivileges(updatedUserPrivileges);
             return;
         }
 
-        setUserPermissions([...userPermissions, p]);
+        setUserPrivileges([...userPrivileges, {
+            "id": p.idPrivilege
+        }]);
     }
 
-    const check = (permission) => {
-        userPermissions.map((up) => {
-            if (up.privilege.name == permission.name) {
-                console.log(up.privilege.name);
-                return true;
-            }
-        })
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (name == "") {
+            toast.error("All fields are required");
+            return;
+        }
+
+        handleModalModUser();
+        await createAccess(finalObject);
+        getUsers();
     }
 
     return (
@@ -94,8 +117,7 @@ const ModalModUser = () => {
                                         Guardar cambios
                                     </Dialog.Title>
 
-                                    <form className="my-10" onSubmit={() => console.log("BUM")}>
-
+                                    <form className="my-10" onSubmit={(e) => handleSubmit(e)}>
 
                                         <div className="mb-5">
                                             <label htmlFor="name" className="text-gray-700 font-bold uppercase text-sm">Nombre:</label>
@@ -118,31 +140,15 @@ const ModalModUser = () => {
                                                             <div className="flex gap-2 items-center" key={permission.idPrivilege}>
                                                                 <Checkbox
                                                                     id={permission.idPrivilege}
-                                                                    onChange={() => handlePermissions(permission.name)}
-                                                                    checked={userPermissions.some(obj => Object.values(obj.privilege).includes(permission.name))}
+                                                                    onChange={() => handlePermissions(permission)}
+                                                                    checked={userPrivileges.some(obj => Object.values(obj).includes(permission.idPrivilege))}
                                                                 />
                                                                 <p>{permission.name}</p>
                                                             </div>
                                                         ))
                                                         :
-                                                        <p className="text-center text-gray-700 font-bold uppercase p-5">No hay ermisos</p>
-
+                                                        <p className="text-center text-gray-700 font-bold uppercase p-5">No hay permisos</p>
                                                 }
-
-
-
-                                                {/* <div className="flex gap-2 items-center">
-                                                    <Checkbox onChange={() => handlePermissions(1)} />
-                                                    <p>Permiso 1</p>
-                                                </div>
-                                                <div className="flex gap-2 items-center">
-                                                    <Checkbox onChange={() => handlePermissions(2)} />
-                                                    <p>Permiso 2</p>
-                                                </div>
-                                                <div className="flex gap-2 items-center">
-                                                    <Checkbox onChange={() => handlePermissions(3)} />
-                                                    <p>Permiso 3</p>
-                                                </div> */}
                                             </div>
                                         </div>
 
@@ -152,8 +158,6 @@ const ModalModUser = () => {
                                             className="bg-primary-400 hover:bg-primary-500 text-black font-bold uppercase w-full rounded cursor-pointer mt-3 p-3 text-sm transition-colors"
                                             value="Guardar"
                                         />
-
-
                                     </form>
                                 </div>
                             </div>

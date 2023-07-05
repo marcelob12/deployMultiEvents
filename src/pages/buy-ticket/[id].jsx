@@ -15,7 +15,7 @@ import LoaddingSpinnerPay from "@/components/PaymentLoader/LoadingSpinnerPay";
 import Spinner from '@/components/Spinner/Spinner'
 
 const BuyTicket = () => {
-    const { event, getEvent, handleModalTier, loading, createOrder } = useEvent();
+    const { event, getEvent, loading, createOrder } = useEvent();
     const { auth } = useAuth();
     const router = useRouter();
     const [total, setTotal] = useState(0);
@@ -25,16 +25,10 @@ const BuyTicket = () => {
     const [loader, setLoader] = React.useState(false);
     const { id } = router.query;
 
-
     useEffect(() => {
-        console.log(count);
         if (id)
             getEvent(id);
-
     }, [router.query]);
-
-
-
 
     const handleLoader = () => {
         setLoader(true);
@@ -44,8 +38,6 @@ const BuyTicket = () => {
 
         router.push('/tickets');
     };
-
-
 
     const selectedItem = (value) => {
         setTier(value);
@@ -60,7 +52,6 @@ const BuyTicket = () => {
             const totalA = tier.price == undefined ? 0 : tier.price * (count + 1);
             setTotal(totalA);
         }
-
     };
 
     const countDecrement = () => {
@@ -68,7 +59,6 @@ const BuyTicket = () => {
             setCount(count - 1);
             const totalA = tier.price == undefined ? 0 : tier.price * (count - 1);
             setTotal(totalA);
-
         }
     };
 
@@ -86,14 +76,10 @@ const BuyTicket = () => {
         }).catch((error) => {
             console.log(error);
             setLoader(false);
-        }
-        );
-
-
+        });
     }
 
-
-
+    if (loading) return <Spinner />;
 
     return (
         <>
@@ -101,10 +87,8 @@ const BuyTicket = () => {
                 {
                     loader ? (
                         <div className="h-screen z-50">
-
                             <LoaddingSpinnerPay />
                         </div>
-
 
                     ) : (
 
@@ -122,14 +106,17 @@ const BuyTicket = () => {
                                         <BiMap size={22} /> {event.location}
                                     </div>
                                     <div className=" gap-y-3 flex justify-center">
-                                        <Image src={EventoP} alt="Event image" className="my-3 md:w-3/4" />
+                                        <Image src={event.image} width={300} height={300} alt="Event image" className="my-3 md:w-3/4" />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <h2 className="font-bold my-5 mx-3 text-xl md:text-4xl">
-                                        Lista de precios
-                                    </h2>
+                                    {
+                                        event.tiers?.length &&
+                                        <h2 className="font-bold my-5 mx-3 text-xl md:text-4xl">
+                                            Lista de precios
+                                        </h2>
+                                    }
                                     <div className="md:text-lg">
                                         {
                                             event.tiers?.map(tier =>
@@ -151,7 +138,7 @@ const BuyTicket = () => {
                                                                         </div>
 
                                                                         <div className="flex-1 text-primary text-end ">
-                                                                            ${tier.price}
+                                                                            $ {tier.price}
                                                                         </div>
                                                                     </div>
 
@@ -165,113 +152,114 @@ const BuyTicket = () => {
                                 </div>
                             </div>
                             <div className="md:flex md:mx-16 md:w-1 md:bg-primary-400" />
-                            <div className="md:flex md:flex-col md:flex-1">
-                                <div>
-                                    <h2 className="font-bold text-xl my-5 md:text-4xl">
-                                        Seleccionar localidad:
-                                    </h2>
-                                    <div className=' grid grid-cols-2  gap-7  justify-items-center '>
-                                        {
-                                            event.tiers?.map(card =>
-                                                card.capacity === 0 ?
-                                                    (
-                                                        null
-                                                    ) :
-                                                    <div key={card.id} onClick={() => { selectedItem(card); setActive(card?.name) }} className={`rounded-md w-[7rem] lg:w-[10rem] text-center p-2 font-semibold hover:cursor-pointer   ${active === card?.name ? "text-primary-400 bg-secondary" : "bg-primary-400 text-secondary hover:bg-yellow-800"} `} >
-                                                        {card?.name}
-                                                    </div>
 
-
-
-                                            )}
-                                    </div>
-                                    {
-                                        active ?
-                                            <div className=" p-5 flex justify-center md:text-lg">
-                                                <div className="bg-primary-400 font-bold rounded my-3 flex">
-                                                    <button className="px-2 py-1 justify-center items-center hover:bg-yellow-800 hover:rounded" onClick={countDecrement}>
-                                                        <AiOutlineMinus />
-                                                    </button>
-                                                    <div className="px-1 py-1 flex justify-center items-center content-center w-5">
-                                                        {count}
-                                                    </div>
-                                                    <button className="px-2 py-1 justify-center items-center hover:bg-yellow-800 hover:rounded" onClick={countIncrement}>
-                                                        <AiOutlinePlus />
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            :
-                                            null
-                                    }
-                                </div>
-
-                                <div>
-                                    <h2 className="font-bold my-3 text-xl md:text-4xl">
-                                        Resumen:
-                                    </h2>
-                                    <div className="md:flex md:justify-center">
-                                        <div className="bg-secondary rounded text-white px-3 py-1 my-2 text-lg md:w-5/6 ">
-                                            <h2 className="font-bold my-2">
-                                                {event.title}
+                            {
+                                event.tiers?.length ?
+                                    <div className="md:flex md:flex-col md:flex-1">
+                                        <div>
+                                            <h2 className="font-bold text-xl my-5 md:text-4xl">
+                                                Seleccionar localidad:
                                             </h2>
-                                            <div className="bg-primary h-0.5 my-2" />
-                                            <div className="flex flex-col ml-5 justify-start">
-                                                <div className="flex flex-row mt-1">
-                                                    <div className="font-bold mx-2">
-                                                        Localidad:
-                                                    </div>
-                                                    <div>
-                                                        {tier.name}
-                                                    </div>
-                                                </div>
-
-                                                <div className="flex flex-row mt-1">
-                                                    <div className="font-bold mx-2">
-                                                        Cantidad:
-                                                    </div>
-                                                    {count}
-                                                    <div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div className="flex flex-row justify-end items-center my-2 text-xl">
-                                                    <div>
-                                                        Total:
-                                                    </div>
-                                                    <h1 className="text-primary font-bold ml-2 text-2xl">
-                                                        {total}
-
-
-                                                    </h1>
-                                                </div>
-
+                                            <div className=' grid grid-cols-2  gap-7  justify-items-center '>
+                                                {
+                                                    event.tiers?.map(card =>
+                                                        card.capacity === 0 ?
+                                                            null
+                                                            :
+                                                            <div key={card.id} onClick={() => { selectedItem(card); setActive(card?.name) }} className={`rounded-md w-[7rem] lg:w-[10rem] text-center p-2 font-semibold hover:cursor-pointer   ${active === card?.name ? "text-primary-400 bg-secondary" : "bg-primary-400 text-secondary hover:bg-yellow-800"} `} >
+                                                                {card?.name}
+                                                            </div>
+                                                    )}
                                             </div>
+                                            {
+                                                active ?
+                                                    <div className=" p-5 flex justify-center md:text-lg">
+                                                        <div className="bg-primary-400 font-bold rounded my-3 flex">
+                                                            <button className="px-2 py-1 justify-center items-center hover:bg-yellow-800 hover:rounded" onClick={countDecrement}>
+                                                                <AiOutlineMinus />
+                                                            </button>
+                                                            <div className="px-1 py-1 flex justify-center items-center content-center w-5">
+                                                                {count}
+                                                            </div>
+                                                            <button className="px-2 py-1 justify-center items-center hover:bg-yellow-800 hover:rounded" onClick={countIncrement}>
+                                                                <AiOutlinePlus />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    :
+                                                    null
+                                            }
                                         </div>
 
+                                        <div>
+                                            <h2 className="font-bold my-3 text-xl md:text-4xl">
+                                                Resumen:
+                                            </h2>
+                                            <div className="md:flex md:justify-center">
+                                                <div className="bg-secondary rounded text-white px-3 py-1 my-2 text-lg md:w-5/6 ">
+                                                    <h2 className="font-bold my-2">
+                                                        {event.title}
+                                                    </h2>
+                                                    <div className="bg-primary h-0.5 my-2" />
+                                                    <div className="flex flex-col ml-5 justify-start">
+                                                        <div className="flex flex-row mt-1">
+                                                            <div className="font-bold mx-2">
+                                                                Localidad:
+                                                            </div>
+                                                            <div>
+                                                                {tier.name}
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="flex flex-row mt-1">
+                                                            <div className="font-bold mx-2">
+                                                                Cantidad:
+                                                            </div>
+                                                            {count}
+                                                            <div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="flex flex-row justify-end items-center my-2 text-xl">
+                                                            <div>
+                                                                Total:
+                                                            </div>
+                                                            <h1 className="text-primary font-bold ml-2 text-2xl">
+                                                                $ {total}
+
+
+                                                            </h1>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            {
+                                                count == 0 || tier.length == 0 ?
+                                                    <div className="flex justify-center  ">
+                                                        <button className="bg-gray-200 text-gray-500 font-bold text-xl my-5 px-4 py-3 rounded hover:cursor-default " >
+                                                            Procesar compra
+                                                        </button>
+                                                    </div>
+                                                    :
+                                                    <div className="flex justify-center  ">
+                                                        <button className="bg-primary-400 font-bold text-xl my-5 px-4 py-3 rounded hover:bg-yellow-800 " onClick={() => sendData()}>
+                                                            Procesar compra
+                                                        </button>
+                                                    </div>
+
+                                            }
+                                        </div>
                                     </div>
-
-
-                                    {
-
-
-                                        count == 0 || tier.length == 0 ?
-                                            <div className="flex justify-center  ">
-                                                <button className="bg-gray-200 text-gray-500 font-bold text-xl my-5 px-4 py-3 rounded hover:cursor-default " >
-                                                    Procesar compra
-                                                </button>
-                                            </div>
-                                            :
-                                            <div className="flex justify-center  ">
-                                                <button className="bg-primary-400 font-bold text-xl my-5 px-4 py-3 rounded hover:bg-yellow-800 " onClick={() => sendData()}>
-                                                    Procesar compra
-                                                </button>
-                                            </div>
-
-                                    }
-                                </div>
-                            </div>
-
+                                    :
+                                    <div className="md:flex md:flex-col md:flex-1 md:justify-center md:items-center">
+                                        <h1 className="font-black text-4xl">No hay información disponible todavía</h1>
+                                    </div>
+                            }
                         </div>
                     )
                 }

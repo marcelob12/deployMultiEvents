@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FiMapPin } from 'react-icons/fi'
 import { IoPersonOutline } from 'react-icons/io5'
 import { BsCalendar } from 'react-icons/bs';
@@ -7,24 +7,43 @@ import { AiOutlineClockCircle, AiOutlineQrcode } from 'react-icons/ai';
 import useEvent from "@/hooks/useEvent";
 
 const Ticket = ({ info, setQrInfo }) => {
-    const { handleModalTicket, handleShareTicketModal } = useEvent();
+    const { handleModalTicket, handleShareTicketModal, generateQrCode, qrCode } = useEvent();
+    const current = new Date();
+    const generatedDate = `${current.getFullYear()}-${("0" + (current.getMonth() + 1)).slice(-2)}-${("0" + current.getDate()).slice(-2)}T${("0" + (current.getHours())).slice(-2)}:${("0" + current.getMinutes()).slice(-2)}`;
+
+    const qrContent = {
+        generatedDate: generatedDate,
+        ticket: info.id
+    }
 
     const date = new Date(info.tier.evenDate).toLocaleDateString();
     const time = new Date(info.tier.evenDate).toLocaleTimeString();
-    const dataModal = {
-        title: info.tier.eventTitle,
-        time: time,
-        date: date,
-        location: info.tier.location,
-        image: info.tier.image,
 
-    };
+
 
     const functions = () => {
+
+
+        const dataModal = {
+            title: info.tier.eventTitle,
+            time: time,
+            date: date,
+            location: info.tier.location,
+            image: info.tier.image
+
+        };
+
         console.log(dataModal, "<-- dataModal");
         setQrInfo(dataModal);
         handleModalTicket();
+        generateQrCode(qrContent);
+        console.log(qrCode)
+
+
+
     }
+
+
 
     return (
         <div className="flex items-center justify-center w-[85%] md:w-3/5 lg:w-1/2 -space-x-4">

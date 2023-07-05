@@ -21,6 +21,15 @@ export default function Event() {
             getEvent(id);
     }, [router.query]);
 
+    useEffect(() => {
+        if (event.id) {
+            // console.log(event.date);
+            const date = event.date.split('T');
+            const time = date[1].split(':');
+            // console.log(`${date[0]} ${time[0]}:${time[1]}`);
+        }
+    }, [event]);
+
     const handleClickEdit = (e) => {
         e.preventDefault();
         router.push("/admin/events/new");

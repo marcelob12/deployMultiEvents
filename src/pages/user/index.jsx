@@ -8,10 +8,12 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Image from 'next/image';
 import ProfileAvatar from 'public/img/zeus.png';
 import Avatar from '@/components/Avatar/Avatar';
+import useAuth from '@/hooks/useAuth';
 
 // md:mr-56 lg:mr-72 lg:mr-80
 
 const User = () => {
+    const { auth } = useAuth();
     const [isShow, setShow] = useState(true);
     const [isActive, setActive] = useState(true);
 
@@ -21,25 +23,23 @@ const User = () => {
             <div className="relative flex justify-center my-14 flex-col items-center">
                 <div className="relative flex flex-col justify-center items-center bg-secondary w-11/12 h-auto text-white py-8 md:w-2/3 lg:w-2/5 rounded-lg">
                     <div className="flex  items-end -space-x-2">
-                        <Image src={ProfileAvatar} width={125} height={72} className="rounded-full ring-2 ring-primary-400" alt="User Avatar" />
-                        <FaRegEdit className="md:text-lg" onClick={()=>setActive(!isActive)} />
+                        <Image src={auth.avatar} width={125} height={72} className="rounded-full ring-2 ring-primary-400" alt="User Avatar" />
+                        <FaRegEdit className="md:text-lg" onClick={() => setActive(!isActive)} />
                         <Avatar isActive={isActive} />
                     </div>
                     <form className="container mx-auto my-6 w-10/12  flex flex-col justify-center gap-4 p-4 bg-white border-4 rounded-md font-medium border-primary-400 md:w-2/3 ">
                         <div className="relative flex items-center flex-col">
                             <label className="text-sm font-Saira text-black md:text-lg">Nombre</label>
-                            <input
-                                className="w-full h-8 px-3 py-1 bg-[#ececec] text-secondary rounded-md font-Saira font-medium border-2 border-black placeholder:text-[#777777] placeholder:text-center placeholder:text-sm md:h-10"
-                                type="text" placeholder="Multi"
-                            />
+                            <label
+                                className="w-full h-8 px-3 py-1 bg-white text-center  text-[#777777] rounded-md font-Saira font-medium border-2 border-secondary md:h-10"
+                            >{auth.username}</label>
                         </div>
 
                         <div className="relative flex items-center flex-col">
                             <label className="text-sm font-Saira text-black md:text-lg">Email</label>
-                            <input
-                                className="w-full h-8 px-3 py-1 bg-[#ececec] text-secondary rounded-md font-Saira font-medium border-2 border-black placeholder:text-[#777777] placeholder:text-center placeholder:text-sm md:h-10"
-                                type="email" placeholder="multievents@gmail"
-                            />
+                            <label
+                                className="w-full h-8 px-3 py-1 bg-white text-center  text-[#777777] rounded-md font-Saira font-medium border-2 border-secondary md:h-10"
+                            >{auth.email}</label>
                         </div>
 
                         <div className="relative flex items-center flex-col ">

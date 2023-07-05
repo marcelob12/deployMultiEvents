@@ -42,8 +42,11 @@ const ModalTier = () => {
                 price: price,
                 visibility: visibility
             }
-            console.log("data", data);
-            updateTier(data);
+
+            handleModalTier();
+            await updateTier(data);
+            getEvent(event.id);
+
         } else {
             const data = {
                 name: name,
@@ -97,7 +100,6 @@ const ModalTier = () => {
                     >
                         <div className="inline-block align-bottom bg-white rounded-lg 1 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
 
-
                             <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                                 <button
                                     type="button"
@@ -117,9 +119,7 @@ const ModalTier = () => {
                                     <Dialog.Title as="h3" className="text-lg leading-6 font-bold text-gray-900">
                                         {
                                             id ?
-
                                                 "Modificar Tier"
-
                                                 :
                                                 "Crear Tier"
                                         }
@@ -165,7 +165,8 @@ const ModalTier = () => {
 
                                         <div className="mb-5 flex justify-center gap-2">
                                             <label htmlFor="visibility" className="text-gray-700 font-bold uppercase text-sm">Visibilidad:</label>
-                                            <input type="checkbox"
+                                            <input
+                                                type="checkbox"
                                                 className="accent-primary-500 hover:cursor-pointer"
                                                 id="visibility"
                                                 checked={visibility}

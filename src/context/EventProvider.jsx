@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { create } from 'qrcode';
 import { createContext, useState } from 'react'
 import { toast } from 'react-toastify';
 
@@ -17,6 +18,8 @@ const EventProvider = ({ children }) => {
     const [tickets, setTickets] = useState([]);
     const [shareTicketModal, setShareTicketModal] = useState(false);
     const [QrReaderModal, setQrReaderModal] = useState(false);
+    const [qrCode, setQrCode] = useState("qrcode");
+    const [scanInfo, setScanInfo] = useState({});
 
     // Handle for Modals
     const handleModalTier = () => {
@@ -65,6 +68,7 @@ const EventProvider = ({ children }) => {
 
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/event/all`, config);
             setEvents(data);
+            setEvent({});
 
         } catch (error) {
             throw error;
@@ -90,12 +94,18 @@ const EventProvider = ({ children }) => {
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/event/${id}`, config);
             setEvent(data);
 
-
         } catch (error) {
             throw error;
         } finally {
             setLoading(false);
         }
+    }
+
+    const submitEvent = async body => {
+        if (event.id)
+            await updateEvent(body, event.id);
+        else
+            await createEvent(body);
     }
 
     const createEvent = async (body) => {
@@ -112,6 +122,27 @@ const EventProvider = ({ children }) => {
             }
 
             const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/event/`, body, config);
+            toast.success(data.msg)
+
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    const updateEvent = async (body, id) => {
+        try {
+            const token = localStorage.getItem("token");
+
+            if (!token) return;
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            const { data } = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/event/update/${id}`, body, config);
             toast.success(data.msg)
 
         } catch (error) {
@@ -240,11 +271,8 @@ const EventProvider = ({ children }) => {
 
             await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/order/`, body, config);
 
-
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/order/all/${body.identifier}`, config);
             console.log("data", data[data.length - 1]);
-
-
 
             try {
                 await updateTier({
@@ -259,13 +287,12 @@ const EventProvider = ({ children }) => {
                 console.log("tier", tier);
             }
 
-            await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/ticket/`, {
-                "tier": tier.id,
-                "order": data[data.length - 1].id
-            }, config);
-
-
-
+            for (let i = 0; i < body.count; i++) {
+                await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/ticket/`, {
+                    "tier": tier.id,
+                    "order": data[data.length - 1].id
+                }, config);
+            }
 
         } catch (error) {
             console.log(error);
@@ -291,7 +318,9 @@ const EventProvider = ({ children }) => {
                 }
             }
 
+            
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/ticket/my-tickets`, config);
+
 
             setTickets(data);
 
@@ -302,6 +331,61 @@ const EventProvider = ({ children }) => {
             setLoading(false);
         }
     }
+
+    const generateQrCode = async (body) => {
+        try {
+            setLoading(true);
+            const token = localStorage.getItem("token");
+
+            if (!token) return;
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/qrcode/`, body, config);
+
+            setQrCode(data);
+
+
+        } catch (error) {
+            toast.error(error);
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const scanQrCode = async () => {
+
+        try {
+            setLoading(true);
+            const token = localStorage.getItem("token");
+
+            if (!token) return;
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/qrcode/${qr}`, config);
+
+            setScanInfo(data);
+
+        } catch (error) {
+            toast.error(error);
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
 
 
     return (
@@ -331,12 +415,14 @@ const EventProvider = ({ children }) => {
                 QrReaderModal,
                 handleQrReaderModal,
                 loading,
-                createEvent,
                 createTier,
                 updateTier,
                 deleteTier,
-                createOrder,
-                getTickets
+                submitEvent,
+                getTickets,
+                qrCode,
+                generateQrCode,                
+                createOrder
             }}
         >
             {children}

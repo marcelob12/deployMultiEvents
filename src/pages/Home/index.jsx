@@ -28,31 +28,66 @@ export default function Home() {
 					<div className="grid justify-items-center gap-3 sm:grid-cols-2 lg:grid-cols-4">
 
 						<button className="w-full relative hover:scale-105 ease-in duration-150">
-							<Image src="/img/sports.jpg" width={0} height={0} sizes="100%" className="w-full h-full" alt="Category Image" />
+							<Image
+								src="/img/sports.jpg"
+								width={0}
+								height={0}
+								sizes="100%"
+								className="w-full h-full"
+								alt="Category Image"
+								placeholder="blur"
+								blurDataURL="/img/sports.jpg"
+							/>
 							<div className="absolute w-full h-full top-0 bg-black bg-opacity-40 flex justify-center items-center">
 								<h3 className="font-Saira uppercase text-white font-bold text-4xl">Deportes</h3>
 							</div>
 						</button>
 						<button className="w-full relative hover:scale-105 ease-in duration-150">
-							<Image src="/img/art.jpg" width={0} height={0} sizes="100%" className="w-full h-full" alt="Category Image" />
+							<Image
+								src="/img/art.jpg"
+								width={0}
+								height={0}
+								sizes="100%"
+								className="w-full h-full"
+								alt="Category Image"
+								placeholder="blur"
+								blurDataURL="/img/art.jpg"
+							/>
 							<div className="absolute w-full h-full top-0 bg-black bg-opacity-40 flex justify-center items-center">
 								<h3 className="font-Saira uppercase text-white font-bold text-4xl">Arte</h3>
 							</div>
 						</button>
 						<button className="w-full relative hover:scale-105 ease-in duration-150">
-							<Image src="/img/concert.jpg" width={0} height={0} sizes="100%" className="w-full h-full" alt="Category Image" />
+							<Image
+								src="/img/concert.jpg"
+								width={0}
+								height={0}
+								sizes="100%"
+								className="w-full h-full"
+								alt="Category Image"
+								placeholder="blur"
+								blurDataURL="/img/concert.jpg"
+							/>
 							<div className="absolute w-full h-full top-0 bg-black bg-opacity-40 flex justify-center items-center">
 								<h3 className="font-Saira uppercase text-white font-bold text-4xl">Conciertos</h3>
 							</div>
 						</button>
 						<button className="w-full relative hover:scale-105 ease-in duration-150">
-							<Image src="/img/fun.jpg" width={0} height={0} sizes="100%" className="w-full h-full" alt="Category Image" />
+							<Image
+								src="/img/fun.jpg"
+								width={0}
+								height={0}
+								sizes="100%"
+								className="w-full h-full"
+								alt="Category Image"
+								placeholder="blur"
+								blurDataURL="/img/fun.jpg"
+							/>
 							<div className="absolute w-full h-full top-0 bg-black bg-opacity-40 flex justify-center items-center">
 								<h3 className="font-Saira uppercase text-white font-bold text-4xl">Diversión</h3>
 							</div>
 						</button>
 					</div>
-					{/* <h1 className='pt-14 pb-5 font-Montserrat font-bold text-2xl'>Eventos</h1> */}
 				</div>
 
 				{/* contenedor de tarjetas de eventos*/}
@@ -71,6 +106,7 @@ export default function Home() {
 									events.map((event, index) => (
 
 										<CardEvent
+											key={event.id}
 											id={event.id}
 											color={colors[((index + 4 - 4) % 4)]}
 											image={event.image}

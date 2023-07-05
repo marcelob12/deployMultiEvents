@@ -53,7 +53,7 @@ const EventStatics = () => {
 
     return (
         <LayoutAdmin title="Estadisticas">
-            <div className="flex sm:flex-col md:flex-row items-center justify-between">
+            <div className="flex flex-col md:flex-row items-center justify-between">
                 <h1 className="text-xl md:text-3xl font-Montserrat font-extrabold">Estadisticas </h1>
                 <div className="flex gap-3">
                     <button className="md:gap-3 px-2 py-1 text-black font-bold bg-primary-400  rounded-lg hover:bg-opacity-90 mt-5">

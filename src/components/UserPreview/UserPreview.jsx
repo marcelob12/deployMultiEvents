@@ -5,14 +5,14 @@ const UserPreview = ({ user }) => {
     const { name, email } = user;
 
     return (
-        <div className="w-full border-b p-5 font-Montserrat md:flex md:justify-between">
+        <div className="w-full border-b p-5 font-Montserrat md:flex md:justify-between ">
             <div>
                 <h3 className="font-bold text-lg">{name}</h3>
-                <div className="flex gap-5 md:flex-col md:gap-0">
+                <div className="flex gap-5 flex-col md:gap-0">
                     <span className="flex gap-2 font-medium">Email: <p className="font-normal">{email}</p></span>
                     <span className="flex gap-2 font-medium">Permisos:
                     </span>
-                    <ul className="font-normal list-disc list-inside">
+                    <ul className="font-normal list-disc list-inside ">
                         {
                             user.accessList.map((access) => (
                                 <li

@@ -2,38 +2,40 @@ import { Carousel, IconButton } from "@material-tailwind/react";
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io'
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
-
-const images = [
-
-    {
-        id: 1,
-        image: "/img/banner1.jpeg"
-
-    },
-    {
-        id: 2,
-        image: "/img/banner2.jpeg"
-    },
-    {
-        id: 3,
-        image: "/img/banner3.jpeg"
-    },
-    {
-        id: 4,
-        image: "/img/banner4.jpeg"
-    }
-
-]
 
 export default function Example() {
+    const [images, setImages] = useState([]);
+
+    useEffect(() => {
+        setImages([
+            {
+                id: 1,
+                image: "/img/banner1.jpeg"
+
+            },
+            {
+                id: 2,
+                image: "/img/banner2.jpeg"
+            },
+            {
+                id: 3,
+                image: "/img/banner3.jpeg"
+            },
+            {
+                id: 4,
+                image: "/img/banner4.jpeg"
+            }
+
+        ]);
+    }, [])
 
 
     return (
         <Carousel
             loop={true}
             autoplay={true}
-            swipe={true}
             autoplayDelay={3000}
 
             className="z-0"
@@ -67,13 +69,16 @@ export default function Example() {
                 images.map((img) => {
 
                     return (
-
                         <Image
+                            key={img.id}
                             id={img.id}
                             src={img.image}
                             alt="image"
-                            fill={true}
-                            className="h-full w-full object-cover bg-no-repeat bg-center"
+                            width={1200}
+                            height={600}
+                            className="w-full h-full"
+                            placeholder="blur"
+                            blurDataURL={img.image}
                         />
 
                     )

@@ -17,16 +17,17 @@ export default function Users() {
         <LayoutAdmin title="Usuarios">
             <div className="flex items-center justify-between">
                 <h1 className="text-3xl font-Montserrat font-extrabold">Usuarios</h1>
-                <div className="flex gap-3 font-Montserrat">
+                {/* <div className="flex gap-3 font-Montserrat">
                     <button className="flex gap-3 px-3 py-1 text-black font-bold bg-primary-400 uppercase rounded-lg hover:bg-opacity-90 mt-5 transition-all" >
                         <AiOutlineSearch size={25} />
                         Buscar
                     </button>
-                </div>
+                </div> */}
             </div>
+
+
             {
-                loading ?
-                    <Spinner />
+                loading ? <Spinner />
                     :
                     <div className="bg-white shadow mt-10 rounded-lg">
                         {

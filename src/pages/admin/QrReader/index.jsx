@@ -25,14 +25,14 @@ const QrReader = () => {
                         <QrReaderComponent onClick={handleModalQR} />
                         :
 
-                <div className="border-gray-600 border-2 border-dashed py-11 w-[15rem] h-[17rem] md:w-[20rem] md:h-[20rem] rounded-lg text-center items-center flex flex-col justify-center gap-5">
-                    <img src={Qr} alt="" className='w-[5rem] pt-5' />
+                        <div className="border-gray-600 border-2 border-dashed py-11 w-[15rem] h-[17rem] md:w-[20rem] md:h-[20rem] rounded-lg text-center items-center flex flex-col justify-center gap-5">
+                            <img src={Qr} alt="" className='w-[5rem] pt-5' />
 
-                    <button className='border-primary-400 border-2 px-5 font-semibold rounded-md text-gray-600'>Buscar imagen</button>
-                    <p>o</p>
-                    <button className='border-primary-400 border-2 px-5 font-semibold rounded-md text-gray-600' onClick={handleModalQR}>Abrir cámara</button>
+                            <button className='border-primary-400 border-2 px-5 font-semibold rounded-md text-gray-600'>Buscar imagen</button>
+                            <p>o</p>
+                            <button className='border-primary-400 border-2 px-5 font-semibold rounded-md text-gray-600' onClick={handleModalQR}>Abrir cámara</button>
 
-                </div>
+                        </div>
 
                 }
 

@@ -12,6 +12,8 @@ const Tickets = () => {
 
 	useEffect(() => {
 		getTickets();
+		console.log(tickets);
+
 	}, []);
 
 
@@ -27,11 +29,13 @@ const Tickets = () => {
 				{
 					tickets.length ?
 						tickets.map(ticket => (
-							<Ticket
-								key={ticket.id}
-								info={ticket.tickets[0]}
-								setQrInfo={setQrInfo}
-							/>
+							ticket.tickets.map(t => (
+								<Ticket
+									key={t.id}
+									info={t}
+									setQrInfo={setQrInfo}
+								/>
+							))
 						))
 						:
 						null

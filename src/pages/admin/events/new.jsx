@@ -8,20 +8,28 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 export default function NewEvent() {
-    const { getCategories, categories, event, createEvent } = useEvent();
+    const { getCategories, categories, event, submitEvent } = useEvent();
     const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [location, setLocation] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
     const [img, setImg] = useState("");
     const [imgUrl, setImgUrl] = useState("");
 
     useEffect(() => {
         getCategories();
 
+
         if (event?.id) {
+            const d = event.date.split(':');
+            const dF = event.dateEnd.split(':');
+
             setName(event.title);
-            setLocation(event.place);
-            setCategory(event.category);
+            setLocation(event.location);
+            setCategory(event.category.name);
+            setStartDate(`${d[0]}:${d[1]}`);
+            setEndDate(`${dF[0]}:${dF[1]}`);
             setImg(event.image);
             return;
         }
@@ -36,33 +44,46 @@ export default function NewEvent() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const date = new Date();
-
-        const url = await uploadImage();
-
-        console.log("BUM");
-        if ([name, location, category, url].includes("")) {
+        const today = new Date();
+        // console.log(today);
+        if ([name, location, category, startDate, startDate, endDate].includes("")) {
             toast.error("All fields are required");
             return;
         }
 
+        const sDate = new Date(startDate);
+        const eDate = new Date(endDate);
+
+        if (sDate < today || eDate < today) {
+            toast.error("Invalid dates");
+            return;
+        }
+
+        if (sDate > eDate) {
+            toast.error("Start date must be greater than end date");
+            return;
+        }
+
+        const url = await uploadImage();
+
         const eventBody = {
             title: name,
-            date: date,
+            date: startDate,
+            dateEnd: endDate,
             image: url,
-            duration: "3200",
             location: location,
             category: category
         }
 
-        createEvent(eventBody);
+        submitEvent(eventBody);
 
         setName("");
         setCategory("");
         setLocation("");
         setImg("");
+        setStartDate("");
+        setEndDate("");
         setImgUrl("");
-
     }
 
     const uploadImage = async () => {
@@ -126,6 +147,30 @@ export default function NewEvent() {
                         placeholder="Ubicación del evento"
                     />
                 </div>
+
+                <div className="flex flex-col gap-2 mb-7">
+                    <label className="uppercase font-bold text-gray-600" htmlFor="startDate">Fecha de inicio:</label>
+                    <input
+                        id="startDate"
+                        className="border-[1.5px] border-gray-400 rounded-xl h-10 px-2 focus:outline-primary-400"
+                        type="datetime-local"
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                    />
+                </div>
+
+                <div className="flex flex-col gap-2 mb-7">
+                    <label className="uppercase font-bold text-gray-600" htmlFor="initDate">Fecha de finalización:</label>
+                    <input
+                        id="initDate"
+                        className="border-[1.5px] border-gray-400 rounded-xl h-10 px-2 focus:outline-primary-400"
+                        type="datetime-local"
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
+                    />
+                </div>
+
+
 
                 <div className="flex flex-col gap-2 mb-7">
                     <label className="uppercase font-bold text-gray-600">Imagen:</label>

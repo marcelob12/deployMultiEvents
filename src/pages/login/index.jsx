@@ -19,7 +19,7 @@ export default function Login() {
 
     useEffect(() => {
         if (auth.email)
-            router.push("/admin/events");
+            router.push("/");
     }, [auth]);
 
     const handleGoogleAuth = async (idToken) => {

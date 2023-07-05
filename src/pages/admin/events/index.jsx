@@ -18,7 +18,9 @@ export default function Events() {
     return (
         <>
             <LayoutAdmin title="Eventos">
+
                 <div className="flex items-center justify-between mb-10">
+
                     <h1 className="text-3xl font-Montserrat font-extrabold">Eventos</h1>
                     <div className="flex gap-3 font-Montserrat">
                         <button className="flex gap-3 px-3 py-1 text-black font-bold bg-primary-400 uppercase rounded-lg hover:bg-opacity-90 mt-5 transition-all" onClick={handleSearchBar}>

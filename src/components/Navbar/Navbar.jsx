@@ -49,8 +49,8 @@ const Navbar = ({ isAdmin }) => {
                         Eventos
                     </Link>
                     <Link
-                        href="/how"
-                        className={`font-Montserrat font-bold uppercase hover:text-primary-400 h-full flex items-center px-5 ${router.pathname == '/how' ? "text-primary-400" : "text-white"}`}
+                        href="/info"
+                        className={`font-Montserrat font-bold uppercase hover:text-primary-400 h-full flex items-center px-5 ${router.pathname == '/info' ? "text-primary-400" : "text-white"}`}
                     >
                         ¿Cómo funciona?
                     </Link>
@@ -136,12 +136,36 @@ const Navbar = ({ isAdmin }) => {
                             Eventos
                         </Link>
                         <Link
-                            href="/how"
+                            href="/info"
                             className={`flex gap-3 items-center w-full hover:bg-primary-400 hover:text-black p-3 ease-in duration-75 ${router.pathname == '/how' ? "bg-primary-400 text-black" : "bg-secondary text-white"}`}
                         >
                             <HiQuestionMarkCircle />
                             ¿Cómo funciona?
                         </Link>
+
+                        <Link
+                            href="/tickets"
+                            className={`flex gap-3 items-center w-full hover:bg-primary-400 hover:text-black p-3 ease-in duration-75 ${router.pathname == '/tickets' ? "bg-primary-400 text-black" : "bg-secondary text-white"}`}
+                        >
+                            <BsTicketPerforated />
+                            Mis Tickets
+                        </Link>
+                        
+                        <Link
+                            href="/admin/events"
+                            className={`flex gap-3 items-center w-full hover:bg-primary-400 hover:text-black p-3 ease-in duration-75 ${router.pathname == '/info' ? "bg-primary-400 text-black" : "bg-secondary text-white"}`}
+                        >
+                            <RiUserSettingsLine />
+                            Admin
+                        </Link>
+                        <Link
+                            href="/login"
+                            className={`flex gap-3 items-center w-full hover:bg-primary-400 hover:text-black p-3 ease-in duration-75 ${router.pathname == '/login' ? "bg-primary-400 text-black" : "bg-secondary text-white"}`}
+                        >
+                            <HiUser />
+                            Iniciar sesión
+                        </Link>
+
 
                         {
                             adm &&

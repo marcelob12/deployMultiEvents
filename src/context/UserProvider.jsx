@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createContext, useState } from 'react'
+import { toast } from 'react-toastify';
 
 const UserContext = createContext();
 
@@ -69,6 +70,29 @@ const UserProvider = ({ children }) => {
         }
     }
 
+    const createAccess = async (body) => {
+        try {
+            setLoading(true);
+            const token = localStorage.getItem("token");
+
+            if (!token) return;
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/user/access`, body, config);
+            toast.success(data.msg);
+        } catch (error) {
+            throw error;
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <UserContext.Provider
             value={{
@@ -79,7 +103,9 @@ const UserProvider = ({ children }) => {
                 user,
                 chargeUserData,
                 getPrivileges,
-                privileges
+                privileges,
+                loading,
+                createAccess
             }}
         >
             {children}
